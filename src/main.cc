@@ -23,8 +23,8 @@ main(int argc, char **argv)
       std::cout << "\nEnter player name and press enter; leave blank and press enter to continue.\n";
     }
 
-    // prompt for player
-    std::cout << "\nPlayer " << players.size() + 1 << ": ";
+    // prompt for player names
+    std::cout << "\nPlayer: " << players.size() + 1 << ": ";
     std::getline(std::cin, buffer);
 
     // strip away any whitespace at beginning and end of string
@@ -42,18 +42,23 @@ main(int argc, char **argv)
     std::string name = buffer.substr(start, len);
 
     if (name == "esc") {
-      std::cout << "quitting.\n";
+      std::cout << "Quitting the game!\n";
       return 0;
     }
 
     // create new Player and add to players
-    players.push_back(Player(name));
+    players.push_back(Player(name, players.size()+1));
 
-    // pring a little string to let us know what happened
-    std::cout << "Player" << players.size() << "'s name is '" << players.back().getName() << "'\n";
+    // print a little string to let us know what happened
+    std::cout << "Player" << players.back().getID() << "'s name is '" << players.back().getName() << "'\n";
   }
 
-  std::cout << "Done.\n";
+  std::cout << "\nList of entered players: ";
+  for (auto const& player : players) {
+      std::cout << player;
+  }
+
+  std::cout << "\n\nqgame exited.\n";
 
   return 0;
 }
