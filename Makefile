@@ -8,7 +8,7 @@ CFLAGS ?= -Wall -std=c++11
 
 CLASSES = game player
 
-.PHONY: all clean
+.PHONY: all test clean
 
 all: qgame
 
@@ -20,6 +20,8 @@ build/main.o: src/main.cc
 
 build/%.o: src/%.cpp src/%.hpp
 	${CXX} -c ${CFLAGS} $< -o $@
+
+test:
 
 clean:
 	rm build/*
