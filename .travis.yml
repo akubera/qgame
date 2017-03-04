@@ -18,13 +18,9 @@ matrix:
         packages:
         - g++-5
 
-  - os: linux
-    env: COMPILER_NAME=clang CXX=clang++-3.8 CC=clang-3.8
-    addons:
-      apt:
-        sources: *APT_SOURCES
-        packages:
-        - clang-3.8
+  - os: osx
+    language: cpp
+
 
 script:
  - make
