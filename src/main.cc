@@ -4,8 +4,10 @@
  * Main executable file for qgame
  */
 
+#include "app.hpp"
 #include "game.hpp"
 #include "player.hpp"
+
 
 #include <iostream>
 #include <vector>
@@ -15,6 +17,14 @@
 int
 main(int argc, char **argv)
 {
+  // build vector of strings from unix argv
+  const std::vector<std::string> args(argv, argv + argc);
+
+  // Create application from arguments
+  App app(args);
+
+  std::cout << "Playing Game: " << app.Name() << "\n";
+
   std::vector<Player> players;
   std::string buffer;
 

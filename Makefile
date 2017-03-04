@@ -4,15 +4,19 @@
 
 CC ?= gcc
 CXX ?= g++
-CFLAGS ?= -Wall -std=c++11
+CFLAGS ?= -Wall -std=c++14
 
-CLASSES = game player
+CLASSES = Game Player App
+
+CLASS_SRC_FILES = $(addsuffix .cpp,$(shell echo "${CLASSES}" | tr A-Z a-z))
+CLASS_HDR_FILES = $(subst .cpp,.hpp,${CLASS_SRC_FILES})
+CLASS_OBJ_FILES = $(subst .cpp,.o,${CLASS_SRC_FILES})
 
 .PHONY: all test clean
 
 all: qgame
 
-qgame: build/game.o build/player.o build/main.o
+qgame: build/main.o $(addprefix build/,${CLASS_OBJ_FILES})
 	${CXX} ${CFLAGS} -o $@ $^
 
 build/main.o: src/main.cc
